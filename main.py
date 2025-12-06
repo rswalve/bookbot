@@ -4,7 +4,7 @@ def main():
 	num_words = get_num_words(text)
 	letter_count = get_chars_dict(text)
 	print("--- Begin report of books/frankenstein.txt ---")
-	print(f"{num_words} words found in the document")
+	print(f"Found {num_words} total words")
 	print()
       
 	list_of_dicts = []
