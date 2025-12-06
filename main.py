@@ -1,12 +1,21 @@
 from stats import get_num_words, get_chars_dict
+import sys
+
+if len(sys.argv) != 2:
+    # 1. Print the usage message
+    print("Usage: python3 main.py <path_to_book>")
+    
+    # 2. Exit the program with status code 1 (indicating an error)
+    sys.exit(1)
+
 
 def main():
-	book_path = "books/frankenstein.txt"
+	book_path = sys.argv[1]
 	text = get_book_text(book_path)
 	num_words = get_num_words(text)
 	letter_count = get_chars_dict(text)
 	print("============ BOOKBOT ============")
-	print("Analyzing book found at {book_path}")
+	print(f"Analyzing book found at {book_path}")
 	print("----------- Word Count ----------")
 	print(f"Found {num_words} total words")
 	print("--------- Character Count -------")
