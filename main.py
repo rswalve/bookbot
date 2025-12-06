@@ -1,13 +1,15 @@
-from stats import get_num_words
+from stats import get_num_words, get_chars_dict
 
 def main():
 	book_path = "books/frankenstein.txt"
 	text = get_book_text(book_path)
 	num_words = get_num_words(text)
 	letter_count = get_chars_dict(text)
-	print("--- Begin report of books/frankenstein.txt ---")
+	print("============ BOOKBOT ============")
+	print("Analyzing book found at {book_path}")
+	print("----------- Word Count ----------")
 	print(f"Found {num_words} total words")
-	print()
+	print("--------- Character Count -------")
       
 	list_of_dicts = []
 	for key, value in letter_count.items():
@@ -17,24 +19,14 @@ def main():
 	list_of_dicts.sort(reverse=True, key=sort_on)
 	
 	for item in list_of_dicts:
-		print(f"The '{item['char']}' character was found {item['num']} times")
+		#print(f"The '{item['char']}' character was found {item['num']} times")
+		print(f"{item['char']}: {item['num']}")
             
 	print("--- End report ---")
 
 def get_book_text(path):
 	with open(path) as f:
 		return f.read()
-
-def get_chars_dict(text):
-    chars = {}
-    for c in text:
-        lowered = c.lower()
-        if lowered.isalpha():  # Only consider alphabetic characters
-            if lowered in chars:
-                chars[lowered] += 1
-            else:
-                chars[lowered] = 1
-    return chars
 
 def sort_on(dict):
       return dict["num"]
